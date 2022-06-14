@@ -1,0 +1,79 @@
+<div class="profile-company">
+    <img class="company-img" src="{{currentCompany.picture}}" alt="Profile Picture">
+    <a type="button" class="btn btn-Candidates" data-toggle="modal" data-target="#showMoreModal">View Company Profile</a>
+    <h1 class="text-uppercase my-5">{{currentCompany.name}}</h1>
+</div>
+
+<a type="button" class="btn btn-Candidates show-more-company" data-toggle="modal" data-target="#showMoreModal">View Company Profile</a>
+
+<div class="container-xl container-lg container-md container-fluid login my-5">
+<div>
+    <h2>Published Offers</h2>
+    {{!-- Create Offer --}}
+    <a type="button" class="btn btn-offers" href="/offer-creation">Create Offer</a>
+    
+    {{!-- Mostrar oferta --}}
+    {{#each offers}}
+    <div class="border rounded p-3 my-2">
+        <h3>{{name}}</h3>
+        <p>Status: {{#if active}}<span style="color: green;">OPEN</span>{{else}}<span
+                style="color: red;">Closed</span>{{/if}}</p>
+
+        <a type="button" class="text-secondary d-block show-more">See More</a>
+
+        <div id="description" class="d-none description">
+            <p class="text"><b>Description: </b><br>{{description}}</p>
+            <p><b>Place of offer: </b> {{address}}</p>
+            <p><b>Requirements:</b>
+            {{#each skills}}
+            {{#if @last}}
+            <span>{{this}}</span>
+            {{else}}
+            <span>{{this}} |</span>
+            {{/if}}
+            {{/each}}
+            </p>
+            <p><b>Catagory: </b> {{category}}</p>
+            <p><b>Contract: </b> {{contract}}</p>
+            <p><b>Education: </b> {{studies}}</p>
+            <p><b>Experience: </b> {{experience}}</p>
+            <p><b>Salery: </b> {{salary}}</p>
+        </div>
+
+        <a type="button" class="btn btn-access" href="/edit-offer/{{id}}">Edit Offer</a>
+        <a type="button" class="btn btn-Candidates" href="/application-detail/{{id}}">See Candidates</a>
+        {{#unless paid}}
+        <p class="mt-3">To publish this offer <u>you must make the payment</u>:
+        <a type="button" class="btn btn-pay" href="/offer-detail/{{id}}">Make payment</a>
+        </p>
+        {{/unless}}
+    </div>
+    {{/each}}
+</div>
+
+
+{{!-- MODAL EDIT COMPANY--}}
+<div class="modal fade" id="showMoreModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid justify-content-center">
+                    <div class="row">
+                        <div class="ms-auto modal-company">
+                            <h2>{{currentCompany.name}}</h2>
+                            <p><b>Email: </b>{{currentCompany.email}}</p>
+                            <p><b>Description: </b>
+                            <p id="description-profile" class="d-none text">{{currentCompany.description}}</p>
+                            <a type="button" id="show-more-profile" class="text-secondary d-block show-more"><b>See More</b></a>
+                            </br>
+                            <p><b>Company Website: </b> {{currentCompany.website}}</p>
+                            <p><b>Company Address: </b> {{currentCompany.address.streetName}} {{currentCompany.address.number}} {{currentCompany.address.zipCode}} {{currentCompany.address.city}} {{currentCompany.address.country}}</p>
+                        </div>
+                        <a class="btn btn-access d-inline" href="/company-edit/{{currentCompany.id}}">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

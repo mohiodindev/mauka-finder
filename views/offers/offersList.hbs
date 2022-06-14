@@ -1,0 +1,122 @@
+<div id="offer-list-navbar"
+    class="navbar-inverse sticky-top2 align-items-center d-flex justify-content-center justify-content-around">
+    <h1 class="space-around mt-2">List of Offers</h1>
+    <a id="show-filters" class="btn btn-outline-primary d-lg-none d-xl-none mt-2 mb-3">Filters</a>
+</div>
+
+<div class="container-xl container-lg container-md container-fluid">
+    <div class="row justify-content-between">
+        {{!-- Filters --}}
+        <div id="filters" class="col-lg-3 col-12 d-none d-lg-block d-xl-block border rounded p-3 mb-2 h-25">
+            <h2><u>Filters</u></h2>
+            <form class="form-group" action="/search-offers">
+                <label for="address" class="mb-0">Address</p>
+                    {{!-- <label for="city">Address</p>
+                        <input class="form-control" name="address" type="text" id="city" value="{{query.address}}">
+                        <label for="address">Address</p> --}}
+                            <input class="form-control mt-0" name="address" type="text" id="address">
+                            <button class="btn btn-secondary text-white mt-2 mb-3" type='submit'>Seek</button>
+            </form>
+
+            <form class="form-group" action="/search-offers" method="GET" id="formCategory">
+                <label for="category">Catagory</label>
+                <select class="form-control" name="category" id="category">
+                    <option disable>Select Catagory</option>
+                    <option value="Adm.Company"> Adm.Company</option>
+                    <option value="Customer Support">Customer Support</option>
+                    <option value="Purchasing, logistics and warehouse">Purchasing, logistics and warehouse</option>
+                    <option value="Education and training">Education and training</option>
+                    <option value="Finance and banking">Finance and banking</option>
+                    <option value="IT and telecommunications">IT and telecommunications</option>
+                    <option value="Engineers and technicians">Engineers and technicians</option>
+                    <option value="Legal">Legal</option>
+                    <option value="Marketing and communication">Marketing and communication</option>
+                    <option value="RR.HH">RR.HH</option>
+                    <option value="Health">Health</option>
+                    <option value="Tourism">Tourism</option>
+                    <option value="Others">Others</option>
+                </select>
+                <button class="btn btn-secondary text-white mt-2 mb-3" type='submit'>Seek</button>
+            </form>
+
+            <form class="form-group" action="/search-offers" method="GET" id="contract"></form>
+            <label for="contract"> Contract</label>
+            <select class="form-control" name="contract" id="contract">
+                <option disable label=" "></option>
+                <option value="Undefined">Undefined</option>
+                <option value="Fixed-term">Fixed-term</option>
+                <option value="Autonomous">Autonomous</option>
+                <option value="Others">Others</option>
+            </select>
+            <button class="btn btn-secondary text-white mt-2 mb-3" type='submit'>Seek</button>
+            </form>
+
+            <form class="form-group" action="/search-offers" method="GET">
+                <label for="studies">Education</label>
+                <select class="form-control" name="studies" id="studies">
+                    <option disable>Education level</option>
+                    <option value="No Studies">No Studies</option>
+                    <option value="ESO">ESO</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Graduate">Graduate</option>
+                    <option value="Diploma">Diploma</option>
+                </select>
+                <button class="btn btn-secondary text-white mt-2 mb-3" type='submit'>Seek</button>
+            </form>
+
+            <form class="form-group" action="/search-offers" method="GET">
+                <label for="experience">Experience (years)</label>
+                <input name="experience" type="number" id="experience">
+                <button class="btn btn-secondary text-white mt-2 mb-3" type='submit'>Seek</button>
+            </form>
+
+            <form class="form-group" action="/search-offers" method="GET">
+                <label for="salary">Salery</label>
+                <select name="salary" id="salary">
+                    <option value="6K - 12k">6K - 12k</option>
+                    <option value="12K - 20K">12K - 20K</option>
+                    <option value="20K - 30K">20K - 30K</option>
+                    <option value="+ 30K">+ 30K</option>
+                </select>
+                <button class="btn btn-secondary text-white  mt-2 mb-3" type='submit'>Seek</button>
+            </form>
+        </div>
+
+        {{!-- Offers --}}
+        <div id="offer-list" class="col-lg-9 col-12">
+            {{#each offers}}
+            <div class="border rounded p-3 mb-2 offer-list-info">
+                <h3>{{name}}</h3>
+
+                <div class="text-secondary d-block d-sm-none d-xs-none"><b><u><span id="show-description"
+                                class="show-description">See More</span></u></b></div>
+
+                <div id="description" class="d-none d-md-block d-sm-block d-xs-block description">
+                    <div>
+                        <b>Description</b>
+                        <p class="text">{{description}}</p>
+                    </div>
+
+                    <div>
+                        <b>Requirements</b>
+                        <div>
+                            {{#each skills}}
+                            {{#if @last}}
+                            <span>{{this}}</span>
+                            {{else}}
+                            <span>{{this}} |</span>
+                            {{/if}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mt-2">Offer By: <strong>{{offers_publishedByCompany.name}}</strong></p>
+                <a href="/offer-detail/{{_id}}">Go to offer page</a>
+            </div>
+            {{/each}}
+        </div>
+
+        {{!-- <button id="scroll-top" class="btn btn-primary">Volver arriba</button> --}}
+    </div>
+</div>

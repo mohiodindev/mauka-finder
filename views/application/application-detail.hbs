@@ -1,0 +1,141 @@
+<div id="application-list-navbar" class="navbar-inverse sticky-top3 align-items-center d-flex justify-content-center justify-content-around">
+    <h1>{{offer.name}}</h1>
+    <form class="delete-form" action="/delete-offer/{{offer._id}}" method="post">
+                <button type="submit" class="btn btn-danger" onclick="return clicked()">Close Process</button>
+            </form>
+</div>
+
+
+<div class="container-xl container-lg container-md container-fluid">
+    {{!-- OFFER --}}
+    {{!-- <div class="container-xl container-lg container-md container-fluid"> --}}
+        <div class="border rounded p-3">
+            <div id="offer-list-navbar" class="align-items-center d-flex justify-content-between">
+                <h3 id="info-oferta" class="mt-2">Offer Information</h3>
+                <div class="text-secondary mt-2"><b><u><span id="show-offer-detail">See More</span></u></b></div>
+            </div>
+            <div id="offer-detail" class="d-none mt-3">
+                <h3>{{offer.name}}</h3>
+                <hr>
+                <h5>Place of offer: {{offer.address}}</h5>
+                <h5>Description</h5>
+                <p class="text-justify">{{offer.description}}</p>
+                <p>
+                    <b>Requirements:</b>
+                    {{#each offer.skills}}
+                    {{#if @last}}
+                    <span>{{this}}</span>
+                    {{else}}
+                    <span>{{this}} |</span>
+                    {{/if}}
+                    {{/each}}
+                </p>
+
+                <a class="btn btn-outline-primary" href="/edit-offer/{{offer._id}}">Edit Offer</a>
+
+                
+            </div>
+        </div>
+
+        {{!-- Candidates --}}
+        <div class="border rounded p-3 mt-3">
+            <div id="offer-list-navbar" class="align-items-center d-flex justify-content-between">
+                <h3 class="mt-2"><u>Candidates</u></h3>
+                <div class="text-secondary mt-2"><b><u><span id="show-app-filters">Filters</span></u></b></div>
+            </div>
+
+            {{!-- Filters --}}
+            <div id="app-filters" class="d-none">
+                <div class="d-flex justify-content-around my-2">
+                    <div class="col-5">
+                        <form class="form-group" action="/application-search">
+                            <label for="age">Age</label>
+                            <input name="offerId" type="hidden" value="{{offer._id}}">
+                            <input class="form-control" name="age" type="text" id="age">
+                            <button class="btn btn-secondary text-white mt-2 mb-3 find-btn"
+                                type='submit'>Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="col-5">
+                        <form class="form-group" action="/application-search">
+                            <label for="addres">Address</label>
+                            <input name="offerId" type="hidden" value="{{offer._id}}">
+                            <input class="form-control" name="address" type="text" id="address">
+                            <button class="btn btn-secondary text-white mt-2 mb-3 find-btn"
+                                type='submit'>Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+            {{!-- Applicants --}}
+            <div class="container">
+                {{!-- Real Candidates --}}
+                {{#with application}}
+                <div id="fake-candidate" class="p-3 mb-2 row d-flex align-items-baseline" data-toggle="modal"
+                    data-target="#candidateModal" data-bs-whatever="@{{id}}"> {{!-- Fake Candidates --}}
+                    {{#each this}}
+                    <div
+                        class="d-flex flex-column align-items-center col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
+                        <img class="profile-img img-fluid" src="{{candidate.picture}}" alt="Profile Picture">
+                        <h5 class="p-2 text-center"><b>{{candidate.name}} <br> {{candidate.surname}}</b> </h5>
+                    </div>
+                    {{/each}}
+                </div>
+                {{/with}}
+            </div>
+
+
+            {{!-- Results filters --}}
+            {{#each Candidates}}
+            <div>
+                <img class="profile-img" src="{{candidate.picture}}" alt="Profile Picture">
+                <h3>{{candidate.name}}</h3>
+            </div>
+            {{/each}}
+        </div>
+
+    </div>
+</div>
+
+{{#each application}}
+{{#with candidate}}
+{{!-- MODAL CANDIDATE--}}
+<div class="modal fade" id="candidateModal">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid justify-content-center">
+                    <div class="row">
+                        <div class="ms-auto modal-company">
+
+                            <img class="profile-img img-fluid" src="{{picture}}" alt="Profile Picture">
+                            <h2>{{name}}</h2>
+                            <p><b>Email: </b>{{email}}</p>
+                            <p>Phone Number {{phone}}</p>
+                            <p>
+                                {{#each skills}}
+                                {{#if @last}}
+                                <span>{{this}}</span>
+                                {{else}}
+                                <span>{{this}} |</span>
+                                {{/if}}
+                                {{/each}}
+                            </p>
+                            <p>Age: {{age}}</p>
+                            <p>My Rusme: {{resume}}</p>
+                            <p>Adress: {{address}}</p>
+                            <p>LinkdIn: {{linkedin}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/with}}
+{{/each}}
+
+<script src="/javascripts/application-detail.js"></script>

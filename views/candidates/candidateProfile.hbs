@@ -1,0 +1,81 @@
+<div class="profile-candidate">
+    <img class="img-fluid profile-img" src="{{currentCandidate.picture}}" alt="Profile Picture">
+
+    <a type="button" class="btn btn-Candidates" data-toggle="modal" data-target="#showMoreModal">My Profile</a>
+
+</div>
+
+<h1 class="candidate-name text-uppercase">{{currentCandidate.name}} {{currentCandidate.surname}}</h1>
+
+<div class="container-xl container-lg container-md container-fluid">
+        <h2>My Offers</h2>
+
+        {{#each application}}
+        <div class="border rounded p-3 mb-2 offers-candidate">
+            <h3>{{offer.name}}</h3>
+            <p>Status: {{#if offer.active}}<span style="color: green;">OPEN</span>{{else}}<span
+                    style="color: red;">Closed</span>{{/if}}</p>
+            
+            <a type="button" class="text-secondary d-block show-more show-me">See More</a>
+            
+            <div id="description1" class="d-none">
+                <p class="text"><b>Description: </b> <br> {{offer.description}}</p>
+                <p><b>Place of offer: </b> {{offer.address}}</p>
+                <p><b>Requirements:</b>
+                    {{#each offer.skills}}
+                    {{#if @last}}
+                    <span>{{this}}</span>
+                    {{else}}
+                    <span>{{this}} |</span>
+                    {{/if}}
+                    {{/each}}
+                </p>
+                <p><b>Catagory: </b> {{offer.category}}</p>
+                <p><b>Contract: </b> {{offer.contract}}</p>
+                <p><b>Education: </b> {{offer.studies}}</p>
+                <p><b>Experience: </b> {{offer.experience}}</p>
+                <p><b>Salery: </b> {{offer.salary}}</p>
+            </div>
+        </div>
+        {{/each}}
+</div>
+
+{{!-- MODAL EDIT CANDIDATE--}}
+<div class="modal fade" id="showMoreModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid justify-content-center">
+                    <div class="row">
+                        <div class="ms-auto modal-company">
+                            <h2>{{currentCandidate.name}} {{currentCandidate.surname}}</h2>
+                            <p><b>Email: </b>{{currentCandidate.email}}</p>
+                            <p><b>Phone Number </b>{{currentCandidate.phone}}</p>
+                            <p><b>Qualities </b>
+                                {{#each currentCandidate.skills}}
+                                {{#if @last}}
+                                <span>{{this}}</span>
+                                {{else}}
+                                <span>{{this}} |</span>
+                                {{/if}}
+                                {{/each}}
+                            </p>
+                            <p><b>Age: </b> {{currentCandidate.age}} years</p>
+                            <p><b>My Resume: </b></p>
+                            <p id="description-profile" class="d-none text"> {{currentCandidate.resume}}</p>
+                            <a type="button" id="show-more-profile" class="text-secondary d-block show-more"><b>See More</b></a>
+                            <p><b>Address: </b>{{currentCandidate.address}}</p>
+                            <p><b>My linkedin: </b>{{currentCandidate.linkedin}}</p>
+                            {{#if currentCandidate.cv}}
+                            <a href="{{currentCandidate.cv}}">Download Resume</a>
+                            {{/if}}
+                        </div>
+                        <a class="btn btn-access d-inline" href="/candidate-edit/{{currentCandidate.id}}">Edit my
+                            profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

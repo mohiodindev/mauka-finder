@@ -1,0 +1,133 @@
+<div class="container-xl container-lg container-md container-fluid login">
+<h1>{{#if currentCandidate}}Edit Profile{{else}}Register{{/if}}</h1>
+<div class="col mb-2">
+    <div class="row">
+        <form action="{{#if currentCandidate}}/candidate-edit/{{_id}}{{else}}/candidate-signup{{/if}}" method="POST" {{#if currentCandidate}}enctype="multipart/form-data"{{/if}}>
+            {{#if currentCandidate}}    
+            <div class="form-group">
+                <label for="candidatePicture-input" name="picture"> Profile Picture </label>
+                <input class="input-login form-control" value="{{picture}}" type="file" name="picture" id="candidatePicture-input">
+                {{#if errors.picture}}
+                <div class="invalid-feedback">
+                    {{errors.picture}}
+                </div>
+                {{/if}}
+            </div>
+            {{/if}}
+            <div class="form-group">
+                <label for="candidateName-input" name="name"> Name </label>
+                <input class="input-login form-control" value="{{name}}" type="text" name="name" id="candidateName-input">
+            </div>
+            <div class="form-group">
+                <label for="Candidatesurname-input" name="surname"> SumNames </label>
+                <input class="input-login form-control" value="{{surname}}" type="text" name="surname" id="Candidatesurname-input">
+            </div>
+
+            {{#unless currentCandidate}}
+            <div class="form-group">
+                <label for="email-input" name="email"> Email: </label>
+                <input class="input-login form-control {{#if errors.email}}is-invalid{{/if}}" type="email"
+                    value="{{candidate.email}}" name="email" id="email-input">
+                {{#if errors.email}}
+                <div class="invalid-feedback">{{errors.email}}</div>
+                {{/if}}
+            </div>
+            <div class="form-group">
+                <label for="candidatePassword-input" name="password"> Password </label>
+                <input class="input-login form-control {{#if errors.password}}is-invalid{{/if}}" type="password" name="password"
+                    id="candidatePassword-input">
+                {{#if errors.password}}
+                <div class="invalid-feedback">{{errors.password}}</div>
+                {{/if}}
+            </div>
+            {{/unless}}
+
+            {{#if currentCandidate}}
+            <div class="form-group">
+                <label for="candidateAge-input" name="age"> Age: </label>
+                <input class="input-login form-control" value="{{age}}" type="number" name="age" id="candidateAge-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="candidatePhoneNumber-input" name="phone"> Phone Number </label>
+                <input class="input-login form-control" value="{{phone}}" type="number" name="phone" id="candidatePhoneNumber-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="candidateResume-input" name="resume">About You</label>
+
+                <textarea class="input-login form-control text" name="resume" id="resume" cols="30" rows="10">{{resume}}</textarea>
+
+            </div>
+
+            <div class="form-group">
+                <label for="skills-input"> Qualities </label>
+                <input class="input-login form-control {{#if errors.skills}}is-invalid{{/if}}" type="text" name="skills"
+                    id="skills-input" value="{{skills}}"
+
+                    placeholder="Ex: creativity, teamwork, results orientation, organization, motivation, communication, commitment, work under pressure...">
+                <div class="form-text text-secondary">You must add at least two Qualities separated by commas.</div>
+                {{#if errors.skills}}
+                <div class="invalid-feedback">{{skills}}</div>
+                {{/if}}
+            </div>
+            
+            <div class="form-group">
+                <label for="address-input"> Address: </label>
+                <input class="input-login form-control mb-2" value="{{address}}" type="text"
+                    name="address" id="address-input" placeholder=""required>
+                {{#if errors.address}}
+                <div class="invalid-feedback">{{errors.address}}</div>
+                {{/if}}
+            </div>
+
+            <div class="form-group">
+                <label for="candidateLinkedin-input" name="linkedin"> Linkedin: </label>
+                <input class="input-login form-control" value="{{linkedin}}" type="text" name="linkedin"
+                    id="candidateLinkedin-input">
+            </div>
+
+            <div class="form-group">
+                <label for="candidateCV-input" name="cv"> Upload CV </label>
+                <input class="input-login form-control" value="{{cv}}" type="file" name="cv" id="candidateCv-input">
+                {{#if errors.cv}}
+                <div class="invalid-feedback">
+                    {{errors.cv}}
+                </div>
+                {{/if}}
+            </div>
+
+            {{/if}}
+            
+            <button class="btn btn-access mt-3" type="submit">{{#if currentCandidate}}Save{{else}}Register{{/if}}</button>  
+        </form>
+    </div>
+</div>
+
+{{#if currentCandidate}}<a type="button" id="privacity"><u>privacy settings</u></a>{{/if}} 
+
+{{#unless currentCandidate}}
+<p class="not-register">Have An Account ? <a href="/candidate-login">Login</a></p>
+{{/unless}}
+
+
+{{#if currentCandidate}}
+<form id="dropOut" class="delete-form d-none" action="/delete-candidate" method="post">
+    <button type="submit" class="btn btn-outline-danger" onclick="return clicked()">Drop Out</button>
+</form>
+
+{{#unlessSocialCandidate currentCandidate}}
+<form id="restorePass" class="update-form d-none" action="/candidate-update-password" method="post">
+    <button type="submit" class="btn btn-offers" onclick="return update()">Update Password</button>
+</form>
+
+<form id="restoreEm" class="update-form d-none" action="/candidate-update-email" method="post">
+    <button type="submit" class="btn btn-offers" onclick="return update()">Update Email</button>
+</form>
+{{/unlessSocialCandidate}}
+
+{{/if}}
+
+</div>
+
+

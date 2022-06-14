@@ -1,0 +1,50 @@
+<div id="offer-list-navbar" class="align-items-center d-flex justify-content-center justify-content-around">
+    <h1 class="space-around d-inline mt-2">{{#if offer.paid}}Offer Details{{else}}Offer Preview{{/if}}</h1>
+</div>
+
+<div id="offer-detail" class="container-xl container-lg container-md container-fluid">
+<div class="border rounded p-3">
+    <h3>{{offer.name}}</h3>
+    <hr>
+    <h5>Place of offer: {{offer.address}}</h5>
+    <h5>Description:</h5>
+    <p class="text">{{offer.description}}</p>
+    <p>
+        <b>Requirements:</b>
+        {{#each offer.skills}}
+        {{#if @last}}
+        <span>{{this}}</span>
+        {{else}}
+        <span>{{this}} |</span>
+        {{/if}}
+        {{/each}}
+    </p>
+    <p>Offer By: <strong>{{offer.offers_publishedByCompany.name}}</strong></p>
+
+    <div id="map"></div>
+
+    {{#if offer.active}}
+    {{#unless currentCompany}}
+    <form class="delete-form d-inline" action="/apply/{{offer.id}}" method="post">
+        <button type="submit" class="btn btn-danger mt-3">Apply Now</button>
+    </form>
+    {{else}}
+    {{#unless offer.paid}}
+    <p class="mt-3">To publish this offer you must make the payment</p>
+    <button id="checkout-btn" class="btn btn-primary">Make payment</button>
+    {{/unless}}
+    {{/unless}}
+    {{/if}}
+</div>
+</div>
+
+<script>
+    const offerId = '{{offer.id}}'
+</script>
+<script>
+    let marker = { lat: {{lat}}, lng: {{lng}} }
+    let editable = false;
+</script>
+<script src="/javascripts/googleMaps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{mapsKey}}&callback=initMap&libraries=&v=weekly" async></script>
+

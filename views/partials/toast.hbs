@@ -1,0 +1,12 @@
+{{#if flashMessage}}
+<div class="bottom-0 start-50 translate-middle-x" style="z-index: 5; position: absolute; top: 0; right: 1rem;" >
+    <div role="alert" aria-live="polite" aria-atomic="true" class="toast show" data-bs-autohide="true">
+        {{!-- <div class="toast-header">
+            <strong class="me-auto">Mauka-Finder</strong>
+        </div> --}}
+        <div class="toast-body">
+            {{flashMessage}}
+        </div>
+    </div>
+</div>
+{{/if}}

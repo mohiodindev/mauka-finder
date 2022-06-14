@@ -1,0 +1,162 @@
+<header class="d-flex align-items-center justify-content-start text-white p-5">
+    <div class="header-data col-12 p-5">
+        <h1 class="h1"><strong>Mauka-Finder</strong></h1>
+        <h2 class="">Your <u>future</u> Start.</h2>
+        <form class="d-flex flex-column col-xl-5 col-lg-7 col-md-9 col-sm-9 col-9" action="/search" method="GET">
+            <input class="form-control form-control-lg mt-2" name="search" type="search" placeholder="Position , Company or Keyword" aria-label="Search">
+            <button class="btn btn-outline-light col-md-4 col-sm-6 col-6 align-self-start mt-2 mx-0 p-1 " type="submit">Seek</button>
+        </form>
+    </div>
+</header>
+
+<div class="graphics d-none d-sm-block d-xs-block">
+    <section id="data">
+        <div class="mb-3 header btn-graphics">
+            <a id="show-employment" class="p-3 my-2 btn btn-access">Employment</a>
+            <a id="show-skills" class="p-3 my-2 btn btn-offers">Skills</a>
+        </div>
+        <div id="employment" class="p-3 justify-content-center flex-column">
+            <div class="container">
+                {{!-- <h2>Employment</h2> --}}
+
+                <div class="row justify-content-beetween home">
+                    <h3>Unemployment rate in Pakistan</h3>
+                    <p class="not-register height-p text">Unemployment rates in Spain have increased with the appearance of the COVID-19 virus. It is expected that the
+                        trend,
+                        once the population is vaccinated, it tends to reverse, so it's time to start
+                        change it.
+                        Are you ready to find your dream job? ¡<a href="/candidate-login">Access</a> to your profile
+                       
+                        the search begins!</p>
+                    <div id="chart_div" style="width: 800px; height: 458px;"></div>
+                    <p>Data obtained from the INE (National Statistics Institute)</p>
+                </div>
+            
+
+                <div class="row justify-content-beetween home">
+                    <h3 class="my-3">Telecommuting</h3>
+                    <p class="height-p text">For some years the trend to telework has been increasing. Among its main causes
+                        are
+                        The best of the
+                        conciliation of work with the family or the reduction of automobile traffic in the Addresses
+                        for
+                        reduce levels of
+                        confirmation. However, the outbreak of the COVID-19 virus has triggered Telecommuting during the
+                        current and past year.</p>
+                    <div class="col-6">
+                        <h4>Year 2021</h4>
+                        <canvas id="circleGraphic" width="10" height="5"></canvas>
+                        <p class="info-graphics">Data obtained in API-V2 "Themuse" </p>
+                    </div>
+                    <div class="col-6">
+                        <h4>Year 2019</h4>
+                        <canvas id="circleGraphic2" width="10" height="5"></canvas>
+                        <p class="info-graphics">Data obtained in API-V2 "Themuse" </p>
+                    </div>
+                </div>
+
+                <div class="ow justify-content-center home">
+                    <h3 class="my-3">Most demanded professions</h3>
+                    <div class="col-11">
+                        <canvas id="lineGraphic"></canvas>
+                    </div>
+                    {{!-- <div class="col-6">
+                        <canvas id="bar-chart-horizontal" width="100" height="50"></canvas>
+                    </div>
+                    <p>Datos obtenidos en la web "El País Economía" </p> --}}
+                </div>
+            </div>
+        </div>
+
+        <div id="skills" class="p-3 d-none">
+            {{!-- <h2>Skills</h2> --}}
+            <div class="container">
+                <div class="row justify-content-beetween home">
+                    <h3 class="mb-2">Professional profiles most in need by Autonomous Communities</h3>
+                    <div id="chart_hab" style="width: 800px; height: 458px;"></div>
+                    <p>Data obtained from Addeco</p>
+                </div>
+
+                <div class="row justify-content-beetween home">
+                    <h3 class="mb-2">Skills required in new professions </h3>
+                    <div class="col-12 col-lg-7">
+                        <img class="first_img" src="/img/Skills.png" alt="People jumping">
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <img class="second_img" src="/img/Skills2.png" alt="Abilities">
+                    </div>
+                </div>
+
+                <div class="row justify-content-start home">
+                    <h3 class="mb-2">What Skills are being requested for the Most demanded professions?</h3>
+                    <div id="sankey_basic" style="width: 100px; height: 550px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<div class="video">
+    <section>
+            <div>
+                <h3 class="mb-5 mt-3">What do I need to know to find my dream job?</h3>
+                <p>If you don't know where to start, our colleagues at educaweb(*) have summarized it in the following
+                    video, what
+                    you must prepare for Seek Employment.</p>
+            </div>
+            <div class="video-laptop">
+                <iframe id="laptop" class="ratio video-in" src="https://www.youtube.com/embed/A0rdpQizK9Y?start=2" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+    </section>
+</div>
+
+<aside class="join border-top">
+
+    <div class="container">
+
+        <h2 class="border-left-title">The technology used for the <br>search for Employment</h2>
+
+        <div class="slider">
+            <div class="slider-track">
+                <ul class="parallax" data-speed=".8" data-axis="horizontal">
+                    <li><img src="img/Aslide1.jpg" alt="Imagen de trabajo"></li>
+                    <li><img src="img/Aslide2.jpeg" alt="Imagen de trabajo"></li>
+                    <li><img src="img/Aslide3.jpeg" alt="Imagen de trabajo"></li>
+                    <li><img src="img/Aslide4.jpeg" alt="Imagen de trabajo"></li>
+                    <li><img src="img/Aslide5.jpeg" alt="Imagen de trabajo"></li>
+                    <li><img src="img/Aslide6.jpeg" alt="Imagen de trabajo"></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</aside>
+
+<section class="sponsors background-grey">
+    <div class="container">
+
+        <div>
+            <h2>Our Companies endorse us</h2>
+            
+            <p>Thousands of Companies and Candidates already trust Mauka-Finder to develop their professional future.</p>
+            
+            <a class="btn btn-access" href="/">Find out why</a>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4"><img src="img/google.png" alt=""></div>
+            <div class="col-12 col-md-6 col-lg-4"><img src="img/mercadona.png" alt=""></div>
+            <div class="col-12 col-md-6 col-lg-4"><img src="img/airbnb.png" alt=""></div>
+            <div class="col-12 col-md-6 col-lg-4"><img src="img/movistar.png" alt=""></div>
+            <div class="col-12 col-md-6 col-lg-4"><img src="img/jobtoday.png" alt=""></div>
+            <div class="col-12 col-md-6 col-lg-4"><img src="img/vodafone.png" alt=""></div>
+        </div>
+
+    </div>
+</section>
+

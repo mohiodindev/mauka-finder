@@ -1,0 +1,102 @@
+<div class="container-xl container-lg container-md container-fluid login">
+<h1 class=>{{#if currentCompany}}Edit Profile{{else}}Register{{/if}}</h1>
+<div class="col mb-2">
+    <div class="row">
+        <form action="{{#if currentCompany}}/company-edit/{{_id}}{{else}}/company-signup{{/if}}" method="POST" {{#if
+            currentCompany}}enctype="multipart/form-data" {{/if}}>
+            <div class="form-group">
+                <label for="companyName-input"> Name </label>
+                <input class="input-login form-control {{#if errors.name}}is-invalid{{/if}}" value="{{name}}" type="text"
+                    name="name" id="companyName-input">
+                {{#if errors.name}}
+                <div class="invalid-feedback">{{errors.name}}</div>
+                {{/if}}
+            </div>
+            {{#unless currentCompany}}
+            <div class="form-group">
+                <label for="email-input"> Email: </label>
+                <input class="input-login form-control {{#if errors.email}}is-invalid{{/if}}" value="{{company.email}}" type="email"
+                    name="email" id="email-input">
+                {{#if errors.email}}
+                <div class="invalid-feedback">{{errors.email}}</div>
+                {{/if}}
+            </div>
+            <div class="form-group">
+                <label for="companyPasswords-input"> Password </label>
+                <input class="input-login form-control {{#if errors.password}}is-invalid{{/if}}" type="password" name="password"
+                    id="companyPasswords">
+                {{#if errors.password}}
+                <div class="invalid-feedback">{{errors.password}}</div>
+                {{/if}}
+            </div>
+            {{/unless}}
+
+            {{#if currentCompany}}
+
+            <div class="form-group">
+                <label for="companyPicture-input" name="picture"> Profile Picture: </label>
+                <input class="input-login form-control" value="{{picture}}" type="file" name="picture" id="companyPicture-input">
+                {{#if errors.picture}}
+                <div class="invalid-feedback">
+                    {{errors.picture}}
+                    {{/if}}
+                </div>
+                <div class="form-group">
+                    <label for="companyDescription-input" name="description"> Company Description: </label>
+                    <textarea class="input-login form-control" name="description" id="description" cols="30" rows="10">{{description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="website-input" name="website"> Company Website: </label>
+                    <input class="input-login form-control" value="{{website}}" type="text" name="website" id="website-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="address-input"> Address: </label>
+                    <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}"
+                        value="{{address.streetName}}" type="text" name="address.streetName" id="address-input"
+                        placeholder="Calle">
+                    <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}" value="{{address.number}}"
+                        type="text" name="address.number" id="address-input" placeholder="Número">
+                    <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}" value="{{address.zipCode}}"
+                        type="text" name="address.zipCode" id="address-input" placeholder="Código Postal">
+                    <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}" value="{{address.city}}"
+                        type="text" name="address.city" id="address-input" placeholder="Address">
+                    <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}" value="{{address.country}}"
+                        type="text" name="address.country" id="address-input" placeholder="País">
+                    {{#if errors.address}}
+                    <div class="invalid-feedback">{{errors.address}}</div>
+                    {{/if}}
+                </div>
+                {{/if}}
+
+                <button class="btn btn-access mt-3" type="submit">{{#if
+                    currentCompany}}Save{{else}}Register{{/if}}</button>
+                <br>
+        </form>
+    </div>
+</div>
+
+{{#if currentCompany}}<a type="button" id="privacity"><u>privacy settings</u></a>{{/if}}
+
+{{#unless currentCompany}}
+<p class="not-register">Have an Account? <a href="/company-login">Login</a></p>
+{{/unless}}
+
+{{#if currentCompany}}
+<form id="dropOut" class="delete-form d-none" action="/delete-company" method="post">
+    <button type="submit" class="btn btn-outline-danger" onclick="return clicked()">Drop Out</button>
+</form>
+
+{{#unlessSocialCompany currentCompany}}
+<form id="restorePass" class="update-form d-none" action="/company-update-password" method="post">
+    <button type="submit" class="btn btn-offers" onclick="return update()">Update Password</button>
+</form>
+
+<form id="restoreEm" class="update-form d-none" action="/company-update-email" method="post">
+    <button type="submit" class="btn btn-offers" onclick="return update()">Update Email</button>
+</form>
+{{/unlessSocialCompany}}
+
+{{/if}}
+
+</div>

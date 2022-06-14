@@ -1,0 +1,35 @@
+<div class="container-xl container-lg container-md container-fluid login">
+    <h1>Login</h1>
+    <div class="col mb-2">
+        <div class="row">
+            <form action="/company-login" method="POST">
+                <div class="form-group">
+                    <label for="email-input"> Email: </label>
+                    <input class="input-login form-control {{#if errors}}is-invalid{{/if}}" type="email" value="{{company.email}}" name="email" id="email-input"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="username-input"> Password </label>
+                    <input class="input-login form-control {{#if errors}}is-invalid{{/if}}" type="password" name="password" id="username-input" required>
+                </div>
+                {{#if errors}}
+                <div class="error-message invalid-feedback">{{errors}}</div>
+                {{/if}}
+
+                <button class="btn-access login-btn" type="submit">Login</button>
+                <a href="/auth/google" class="btn btn-google btn-outline-dark" role="button" style="text-transform:none">
+                    <img class="google-sign-in" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Login With Google</a>
+            </form>
+        </div>
+    </div>
+    <p class="not-register mt-5">Still not Registered <a href="/company-signup">Register</a> | <a class="not-register" type="button" id="candidate-forgot-password">Have you forgot your password? </a></p>
+    <form id="restoreEmail" class="update-form d-none" action="/company-update-password/{{currentCompany._id}}" method="post">
+        <div class="form-group">
+            <label for="email">Enter your recovery email:</label>
+            <input class="form-control" type="text" name="email">
+            <button type="submit" class="btn btn-offers mt-1 sendBtn" onclick="return clicked()">Enviar</button>
+        </div>
+    </form>
+</div>

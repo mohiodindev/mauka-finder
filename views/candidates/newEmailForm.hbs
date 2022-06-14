@@ -1,0 +1,23 @@
+<div class="container-xl container-lg container-md container-fluid login">
+    <h1>Enter your new email</h1>
+    <div class="col mb-2">
+        <div class="row">
+            <form action="/candidate-edit-email" method="POST">
+                <div class="form-group">
+                    <p>Email : <b>{{currentCandidate.email}}</b></p>
+                    <label class="label-login" for="new-email-input"> New Email: </label>
+                    <input class="form-control {{#if errors}}is-invalid{{/if}}" type="email" name="newEmail" id="new-email-input">
+                    {{#if errors.email}}
+                    <div class="invalid-feedback">{{errors.email}}</div>
+                    {{/if}}
+                    <label class="label-login" for="confirm-email-input"> Confirm New Email: </label>
+                    <input class="form-control {{#if errors}}is-invalid{{/if}}" type="email" name="confirmEmail" id="confirm-email-input">
+                    {{#if errors.confirmEmail}}
+                    <div class="invalid-feedback">{{errors.confirmEmail}}</div>
+                    {{/if}}
+                    <button class="btn btn-access mt-3" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

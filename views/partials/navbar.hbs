@@ -1,0 +1,91 @@
+<nav id="navbar" class="navbar sticky-top container-fluid d-flex justify-content-around align-items-baseline">
+    <div class="container-fluid">
+        {{!--
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> --}}
+
+        <a href="/" class="d-sm-inline w-25">
+            <img class="logo-header rounded img-fluid" src="/img/Mauka-Finder.png" alt="Mauka-Finder logo">
+        </a>
+
+        {{!-- <a class="navbar-brand" href="#">Mauka-Finder</a> --}}
+        <div id="navbarTogglerDemo03" class="">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-row px-2">
+                {{#if currentCompany}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/{{#if currentCompany}}company-profile{{else}}company-login{{/if}}"></a>
+                </li>
+                <li class="profile-status">
+                    <a href="/company-profile">{{currentCompany.name}} | Company</a>
+                </li>
+                {{#if currentCompany}}
+                <form action="/company-logout" method="POST">
+                    <li>
+                        <button class="nav-link active btn btn-logout ml-3">LogOut</button>
+                    </li>
+                </form>
+                {{/if}}
+                {{else}}
+                {{#if currentCandidate}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/{{#if currentCandidate}}candidate-profile{{else}}candidate-login{{/if}}"
+                        tabindex="-1" aria-disabled="true"></a>
+                </li>
+                <li class="profile-status">
+                    <a href="/candidate-profile">{{currentCandidate.name}} | Candidate</a>
+                </li>
+                {{#if currentCandidate}}
+                <form action="/candidate-logout" method="POST">
+                    <li>
+                        <button class="nav-link active btn btn-logout  ml-3">LogOut</button>
+                    </li>
+                </form>
+                {{/if}}
+                {{/if}}
+                {{/if}}
+            </ul>
+            {{#unless currentCompany}}
+            {{#unless currentCandidate}}
+            <div class="d-flex flex-row col-sm-8 col-sm-8">
+                <a class="nav-link active btn btn-lg btn-offers mr-3" aria-current="page" href="/offers-list">Offers</a>
+                <button type="button" class="btn btn-lg btn-access" data-toggle="modal" data-target="#accessModal">
+                    Login </button>
+            </div>
+            {{/unless}}
+            {{/unless}}
+        </div>
+        {{!--
+    </div> --}}
+</nav>
+
+<div class="modal fade" id="accessModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 ms-auto">
+                            <img class="modal-img d-block"
+                                src="https://images.unsplash.com/photo-1462206092226-f46025ffe607?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80"
+                                alt="Company">
+                            <a class="btn btn-access" href="/company-login" data-toggle="tooltip" title="GeeksforGeeks"
+                                data-placement="right">
+                                Company</a>
+                        </div>
+                        <div class="col-md-6 ms-auto">
+                            <img class="modal-img d-block"
+                                src="https://images.unsplash.com/photo-1459499362902-55a20553e082?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80"
+                                alt="Candidate">
+                            <a class="btn btn-access text-center" href="/candidate-login" data-toggle="tooltip"
+                                title="GeeksforGeeks" data-placement="right">
+                                Candidate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

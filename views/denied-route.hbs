@@ -1,0 +1,15 @@
+<div>
+    <h1>Access </h1>
+    <p>You do not have permission to view this page. Please sign in with a different account.</p>
+    {{#if currentCompany}}
+    <button class="btn btn-access">
+        <a class ="denied" href="/company-login">Access As Company</a>
+    </button>
+    {{/if}}
+    {{#if currentCandidate}}
+    <button class="btn btn-access">
+        <a class ="denied" href="/candidate-login">Access As Candidate</a>
+    </button>
+    {{/if}}
+    </ul>
+</div>
