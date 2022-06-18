@@ -8,8 +8,7 @@
 <h1 class="candidate-name text-uppercase">{{currentCandidate.name}} {{currentCandidate.surname}}</h1>
 
 <div class="container-xl container-lg container-md container-fluid">
-        <h2>My Offers</h2>
-
+        <h2>Applied Offers</h2>
         {{#each application}}
         <div class="border rounded p-3 mb-2 offers-candidate">
             <h3>{{offer.name}}</h3>
@@ -70,8 +69,7 @@
                             <a href="{{currentCandidate.cv}}">Download Resume</a>
                             {{/if}}
                         </div>
-                        <a class="btn btn-access d-inline" href="/candidate-edit/{{currentCandidate.id}}">Edit my
-                            profile</a>
+                        <a class="btn btn-access d-inline" href="/candidate-edit/{{currentCandidate.id}}">Edit Profile</a>
                     </div>
                 </div>
             </div>

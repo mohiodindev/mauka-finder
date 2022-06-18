@@ -17,11 +17,9 @@ module.exports.companyProfile = (req, res, next) => {
       res.render("companies/companyProfile", { offers });
     }
   );
-  // console.log('req.user company', req.user)
 };
 
 module.exports.login = (req, res, next) => {
-  // console.log('req.user login controller', req.user)
   res.render("companies/login");
 };
 
@@ -314,7 +312,7 @@ module.exports.doEditPassword = (req, res, next) => {
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
-        renderWithErrors(err.errors); // Not rendering errors
+        renderWithErrors(err.errors); 
       } else {
         next(err);
       }

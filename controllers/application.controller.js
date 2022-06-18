@@ -53,8 +53,6 @@ module.exports.apply = (req, res, next) => {
         // if (!application) {
         Application.create({ candidate: candidate, offer: offer })
           .then((createdApplication) => {
-            //console.log ('APPcreatedApplication', createdApplication)
-            //res.render('Candidates/candidateProfile', createdApplication);
             res.redirect("/candidate-profile");
           })
           .catch((err) => next(err));
@@ -84,18 +82,14 @@ module.exports.search = (req, res, next) => {
         console.log("applications", applications);
         Candidate.find()
           .then((CandidatesFound) => {
-            //console.log('CandidatesFound', CandidatesFound)
             const queryAddress = req.query.address.toLowerCase().slice(1);
-            //console.log('req.query.search', queryAddress)
             let filteredCandidates = [];
             CandidatesFound.forEach((c) => {
-              //console.log('Candidates forEach', c)
               const cityCandidate = c.address;
               if (cityCandidate.includes(queryAddress)) {
                 filteredCandidates.push(c);
               }
             });
-            //console.log('filteredCandidates', filteredCandidates)
             return filteredCandidates;
           })
           .then((Candidates) => {

@@ -8,7 +8,6 @@ const flash = require("connect-flash");
 const session = require("./config/session.config");
 const Candidate = require("./models/candidate.model");
 const Company = require("./models/company.model");
-
 require("./config/db.config");
 require("./config/passport.config");
 require("./config/hbs.config");

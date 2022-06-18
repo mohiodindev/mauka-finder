@@ -7,8 +7,6 @@ const Candidate = require("../models/candidate.model");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const { json } = require("express");
-//const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
-
 passport.serializeUser((entity, next) => {
   next(null, entity);
 });
@@ -42,21 +40,17 @@ passport.use(
         .then((company) => {
           if (!company) {
             next(null, false, {
-              error: "El correo electrónico o la contraseña no son correctos",
+              error: "The email or password is not correct",
             });
           } else {
             return company.checkPassword(password).then((match) => {
               if (match) {
                 //   if (company.active) {
                 console.log("Company", company);
-                next(null, company); // Ya incluye todos los datos después del doble populate
-                //   } else {
-                //     next(null, false, { error: "Tu cuenta no está activa, mira tu email" })
-                //   }
+                next(null, company);
               } else {
                 next(null, false, {
-                  error:
-                    "El correo electrónico o la contraseña no son correctos",
+                  error: "The email or password is not correct",
                 });
               }
             });
@@ -81,21 +75,15 @@ passport.use(
         .then((candidate) => {
           if (!candidate) {
             next(null, false, {
-              error: "El correo electrónico o la contraseña no son correctos",
+              error: "The email or password is not correct",
             });
           } else {
             return candidate.checkPassword(password).then((match) => {
               if (match) {
-                //   if (candidate.active) {
-                console.log("Candidate", candidate);
                 next(null, candidate);
-                //   } else {
-                //     next(null, false, { error: "Tu cuenta no está activa, mira tu email" })
-                //   }
               } else {
                 next(null, false, {
-                  error:
-                    "El correo electrónico o la contraseña no son correctos",
+                  error: "The email or password is not correct",
                 });
               }
             });
@@ -107,136 +95,115 @@ passport.use(
 );
 
 // //GOOGLE - COMPANIES
-// passport.use('google-auth-companies', new GoogleStrategy({
-//     clientID: process.env.GCO_CLIENT_ID,
-//     clientSecret: process.env.GCO_CLIENT_SECRET,
-//     callbackURL: process.env.GCO_REDIRECT_URI_COMPANIES,
-// }, (accessToken, refreshToken, profile, next) => {
-//     const googleID = profile.id
-//     const email = profile.emails[0] ? profile.emails[0].value : undefined
+passport.use(
+  "google-auth-companies",
+  new GoogleStrategy(
+    {
+      clientID:
+        process.env.GCO_CLIENT_ID ||
+        "773585323215-l66re452joh4jnuuhep1otck9k6b4pfj.apps.googleusercontent.com",
+      clientSecret: process.env.GCO_CLIENT_SECRET,
+      callbackURL:
+        process.env.GCO_REDIRECT_URI_COMPANIES ||
+        "http://localhost:3000/auth/google/callback",
+    },
+    (accessToken, refreshToken, profile, next) => {
+      const googleID = profile.id;
+      const email = profile.emails[0] ? profile.emails[0].value : undefined;
 
-//     if (googleID && email) {
-//         Company.findOne({
-//             $or: [{
-//                     email: email
-//                 },
-//                 {
-//                     'social.google': googleID
-//                 }
-//             ]
-//         }).then(company => {
-//             if (!company) {
-//                 const newCompanyInstance = new Company({
-//                     name: profile.name.givenName,
-//                     email: email,
-//                     social: {
-//                         google: googleID
-//                     },
-//                     //active: true,
-//                     password: 'Aa1' + mongoose.Types.ObjectId()
-//                 })
-//                 return newCompanyInstance.save()
-//                     .then(newCompany => {
-//                         next(null, newCompany)
-//                     })
-//             } else {
-//                 next(null, company)
-//             }
-//         }).catch(next)
-//     } else {
-//         next(null, false, {
-//             errors: "Error con el proveedor Oauth"
-//         })
-//     }
+      if (googleID && email) {
+        Company.findOne({
+          $or: [
+            {
+              email: email,
+            },
+            {
+              "social.google": googleID,
+            },
+          ],
+        })
+          .then((company) => {
+            if (!company) {
+              const newCompanyInstance = new Company({
+                name: profile.name.givenName,
+                email: email,
+                social: {
+                  google: googleID,
+                },
+                //active: true,
+                password: "Aa1" + mongoose.Types.ObjectId(),
+              });
+              return newCompanyInstance.save().then((newCompany) => {
+                next(null, newCompany);
+              });
+            } else {
+              next(null, company);
+            }
+          })
+          .catch(next);
+      } else {
+        next(null, false, {
+          errors: "Oauth provider error",
+        });
+      }
+    }
+  )
+);
 
-// }))
+//GOOGLE - Candidates
+passport.use(
+  "google-auth-Candidates",
+  new GoogleStrategy(
+    {
+      clientID:
+        process.env.GCA_CLIENT_ID ||
+        "773585323215-l66re452joh4jnuuhep1otck9k6b4pfj.apps.googleusercontent.com",
+      clientSecret: process.env.GCA_CLIENT_SECRET,
+      callbackURL:
+        process.env.GCO_REDIRECT_URI_CANDIDATES ||
+        "http://localhost:3000/auth/google/candidate/callback",
+    },
+    (accessToken, refreshToken, profile, next) => {
+      const googleID = profile.id;
+      const email = profile.emails[0] ? profile.emails[0].value : undefined;
 
-// //GOOGLE - Candidates
-// passport.use('google-auth-Candidates', new GoogleStrategy({
-//     clientID: process.env.GCA_CLIENT_ID,
-//     clientSecret: process.env.GCA_CLIENT_SECRET,
-//     callbackURL: process.env.GCO_REDIRECT_URI_Candidates,
-// }, (accessToken, refreshToken, profile, next) => {
-//     const googleID = profile.id
-//     const email = profile.emails[0] ? profile.emails[0].value : undefined
-
-//     if (googleID && email) {
-//         Candidate.findOne({
-//             $or: [{
-//                     email: email
-//                 },
-//                 {
-//                     'social.google': googleID
-//                 }
-//             ]
-//         }).then(candidate => {
-//             if (!candidate) {
-//                 const newCandidateInstance = new Candidate({
-//                     name: profile.name.givenName,
-//                     surname: profile.name.familyName,
-//                     picture: profile.photos[0].value,
-//                     email: email,
-//                     social: {
-//                         google: googleID
-//                     },
-//                     //active: true,
-//                     password: 'Aa1' + mongoose.Types.ObjectId()
-//                 })
-//                 return newCandidateInstance.save()
-//                     .then(newCandidate => {
-//                         next(null, newCandidate)
-//                     })
-//             } else {
-//                 next(null, candidate)
-//             }
-//         }).catch(next)
-//     } else {
-//         next(null, false, {
-//             errors: "Error con el proveedor Oauth"
-//         })
-//     }
-
-// }))
-
-//LINKEDIN
-// passport.use('linkedin-auth-Candidates', new LinkedInStrategy({
-//     clientID: process.env.L_CLIENT_ID,
-//     clientSecret: process.env.L_CLIENT_SECRET,
-//     callbackURL: "http://127.0.0.1:3000/auth/linkedin/callback",
-//     scope: ['r_emailaddress', 'r_liteprofile'],
-//     passReqToCallback: true
-// }, (accessToken, refreshToken, profile, next) => {
-//         const linkedinID = profile.id
-//         const email = profile.emails[0] ? profile.emails[0].value : undefined
-
-//         if (linkedinID && email) {
-//             Candidate.findOne({
-//                 $or: [
-//                     { email: email },
-//                     {'social.linkedin': linkedinID}
-//                 ]
-//             }).then(candidate => {
-//                 if (!candidate) {
-//                     const newCandidateInstance = new Candidate({
-//                         name: email,
-//                         surname: email,
-//                         email: email,
-//                         social: {
-//                             linkedin: linkedinID
-//                         },
-//                         tokens: accessToken,
-//                         //active: true,
-//                         password: 'Aa1' + mongoose.Types.ObjectId()
-//                     })
-//                     return newCandidateInstance.save()
-//                         .then(newCandidate => {
-//                             next(null, newCandidate)
-//                         })
-//                 } else {
-//                     next(null, candidate)
-//                 }
-//             }).catch(next)
-//         } else {
-//             next(null, false, {errors: "Error con el proveedor Oauth"})
-//         }
-// }))
+      if (googleID && email) {
+        Candidate.findOne({
+          $or: [
+            {
+              email: email,
+            },
+            {
+              "social.google": googleID,
+            },
+          ],
+        })
+          .then((candidate) => {
+            if (!candidate) {
+              const newCandidateInstance = new Candidate({
+                name: profile.name.givenName,
+                surname: profile.name.familyName,
+                picture: profile.photos[0].value,
+                email: email,
+                social: {
+                  google: googleID,
+                },
+                //active: true,
+                password: "Aa1" + mongoose.Types.ObjectId(),
+              });
+              return newCandidateInstance.save().then((newCandidate) => {
+                next(null, newCandidate);
+              });
+            } else {
+              next(null, candidate);
+            }
+          })
+          .catch(next);
+      } else {
+        next(null, false, {
+          errors: "Oauth provider error",
+        });
+      }
+    }
+  )
+);
