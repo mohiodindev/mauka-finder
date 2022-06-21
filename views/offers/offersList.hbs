@@ -8,7 +8,7 @@
     <div class="row justify-content-between">
         {{!-- Filters --}}
         <div id="filters" class="col-lg-3 col-12 d-none d-lg-block d-xl-block border rounded p-3 mb-2 h-25">
-            <h2><u>Filters</u></h2>
+            <h2>Search</h2>
             <form class="form-group" action="/search-offers">
                 <label for="address" class="mb-0">Address</p>
                     {{!-- <label for="city">Address</p>
@@ -83,6 +83,7 @@
         </div>
 
         {{!-- Offers --}}
+
         <div id="offer-list" class="col-lg-9 col-12">
             {{#each offers}}
             <div class="border rounded p-3 mb-2 offer-list-info">

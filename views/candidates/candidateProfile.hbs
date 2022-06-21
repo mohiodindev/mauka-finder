@@ -2,9 +2,16 @@
     <img class="img-fluid profile-img" src="{{currentCandidate.picture}}" alt="Profile Picture">
 
     <a type="button" class="btn btn-Candidates" data-toggle="modal" data-target="#showMoreModal">My Profile</a>
-
 </div>
-
+<div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" style="text-decoration: none;">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+    </nav>
+    {{!-- <a href="/">HOME</a> --}}
+</div>
 <h1 class="candidate-name text-uppercase">{{currentCandidate.name}} {{currentCandidate.surname}}</h1>
 
 <div class="container-xl container-lg container-md container-fluid">
