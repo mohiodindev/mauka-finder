@@ -251,7 +251,8 @@ body, html{
 
 .company-img {
     width: 100%;
-    height: auto;
+    height: 300px;
+    object-fit: cover;
 }
 
 .profile-company > a {

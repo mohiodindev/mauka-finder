@@ -8,7 +8,7 @@ function drawMarkersMap1() {
     [{ v: "ES-GA", f: "Galicia" }, 12],
     [{ v: "ES-AS", f: "Asturias" }, 14],
     [{ v: "ES-CB", f: "Cantabria" }, 12],
-    [{ v: "ES-PV", f: "País Vasco" }, 10],
+    [{ v: "ES-PV", f: "Country Vasco" }, 10],
     [{ v: "ES-RI", f: "La Rioja" }, 10],
     [{ v: "ES-NC", f: "Navarra" }, 12],
     [{ v: "ES-AR", f: "Aragón" }, 12],
@@ -88,7 +88,7 @@ function drawMarkersMap() {
     [
       {
         v: "ES-PV",
-        f: "PAÍS VASCO. Oficios y operarios, técnicos y peones industriales, ingenieros industriales, personal sanitario, perfiles IT",
+        f: "Country VASCO. Oficios y operarios, técnicos y peones industriales, ingenieros industriales, personal sanitario, perfiles IT",
       },
       4,
     ],
