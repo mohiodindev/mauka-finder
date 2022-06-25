@@ -247,7 +247,7 @@ module.exports.search = (req, res, next) => {
     .sort("-createdAt")
     .populate("offers_publishedByCompany")
     .then((offers) => {
-      res.render("offers/offersList", {
+      return res.render("offers/offersList", {
         offers,
         query: req.query,
       });

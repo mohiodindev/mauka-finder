@@ -240,6 +240,7 @@ module.exports.doEditEmail = (req, res, next) => {
 
 module.exports.updatePassword = (req, res, next) => {
   Company.findById({ _id: req.currentCompany.id })
+
     .then((companyToUpdate) => {
       req.flash(
         "flashMessage",
@@ -312,7 +313,7 @@ module.exports.doEditPassword = (req, res, next) => {
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
-        renderWithErrors(err.errors); 
+        renderWithErrors(err.errors);
       } else {
         next(err);
       }

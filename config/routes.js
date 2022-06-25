@@ -79,7 +79,7 @@ router.get(
   CandidatesController.editEmail
 );
 router.post(
-  "/candidate-update-password/:id",
+  "/candidate-update-password/",
   secure.checkRole("CANDIDATE"),
   CandidatesController.updatePassword
 );

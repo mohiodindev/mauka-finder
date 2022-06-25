@@ -8,7 +8,7 @@ showMoreBtns.forEach((showMoreBtn) =>
     description.classList.toggle("d-none");
 
     if (description.className != "d-none") {
-      showMoreBtn.innerHTML = "See More";
+      showMoreBtn.innerHTML = "See Less";
     } else {
       showMoreBtn.innerHTML = "See More";
     }
@@ -22,7 +22,7 @@ document.getElementById("show-more-profile").addEventListener("click", () => {
   description.classList.toggle("d-none");
 
   if (description.className != "d-none") {
-    showMoreBtn.innerHTML = "See More";
+    showMoreBtn.innerHTML = "See Less";
   } else {
     showMoreBtn.innerHTML = "See More";
   }

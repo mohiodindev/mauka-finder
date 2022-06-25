@@ -69,6 +69,7 @@ passport.use(
       passwordField: "password",
     },
     (email, password, next) => {
+      console.log(email, password);
       Candidate.findOne({
         email: email,
       })
@@ -77,14 +78,15 @@ passport.use(
             next(null, false, {
               error: "The email or password is not correct",
             });
+            console.log(candidate);
           } else {
             return candidate.checkPassword(password).then((match) => {
-              if (match) {
-                next(null, candidate);
-              } else {
+              if (!match) {
                 next(null, false, {
                   error: "The email or password is not correct",
                 });
+              } else {
+                next(null, candidate);
               }
             });
           }
@@ -161,7 +163,7 @@ passport.use(
       clientSecret: process.env.GCA_CLIENT_SECRET,
       callbackURL:
         process.env.GCO_REDIRECT_URI_CANDIDATES ||
-        "http://localhost:3000/auth/google/candidate/callback",
+        "http://localhost:3000/auth/google/callback/candidate",
     },
     (accessToken, refreshToken, profile, next) => {
       const googleID = profile.id;
