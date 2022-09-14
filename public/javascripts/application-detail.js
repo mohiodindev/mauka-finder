@@ -22,7 +22,7 @@ document.getElementById("show-offer-detail").addEventListener("click", () => {
   document.getElementById("offer-detail").classList.toggle("d-none");
 
   if (showOfferDetail.innerHTML === "See More") {
-    showOfferDetail.innerHTML = "See More";
+    showOfferDetail.innerHTML = "See Less";
   } else {
     showOfferDetail.innerHTML = "See More";
   }

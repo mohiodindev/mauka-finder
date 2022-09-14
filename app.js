@@ -8,7 +8,6 @@ const flash = require("connect-flash");
 const session = require("./config/session.config");
 const Candidate = require("./models/candidate.model");
 const Company = require("./models/company.model");
-
 require("./config/db.config");
 require("./config/passport.config");
 require("./config/hbs.config");
@@ -95,10 +94,8 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   //FLASH
   res.locals.flashMessage = req.flash("flashMessage");
-
   //GOOGLE MAPS
   res.locals.mapsKey = process.env.MAPS_KEY;
-
   next();
 });
 

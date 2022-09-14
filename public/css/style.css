@@ -25,7 +25,7 @@ body, html{
 
 /* TOAST */
 .toast {
-    background-color: #276678; 
+    background-color: #E8A8B6; 
     font-size: 1rem;
     padding: 10px 20px;
     border-radius: 15px;
@@ -43,10 +43,10 @@ body, html{
     background-color: #d3e0ea;
     text-align: center;
 }
-
+/* #E8A8B6 */
 /* NAVBAR */
 .navbar {
-    background-color: #276678;
+    background-color: #E8A8B6;
     transition: all .3s;
     /* position: fixed; */
     width: 100%;
@@ -70,8 +70,8 @@ body, html{
     background-color: white;
     position: -webkit-sticky;
     position: sticky;
-    top: 4.3rem;
-    z-index: 1030;
+    top: 5rem;
+    z-index: 1100;
 }
 
 .sticky-top3 {
@@ -103,18 +103,18 @@ body, html{
 .btn-offers {
     color: #ffffff;
     border-color: #ffffff;
-    background-color: #276678;
+    background-color: #E8A8B6;
 }
 
 .btn-offers:hover {
-    color: #276678;
-    border-color: #276678;
+    color: #E8A8B6;
+    border-color: #E8A8B6;
     background-color: #fff;
 }
 
 .btn-access {
-    color: #276678;
-    border-color: #276678;
+    color: #E8A8B6;
+    border-color: #E8A8B6;
     background-color: #fff;
     padding: 0.25rem 0.5rem;
 }
@@ -122,23 +122,23 @@ body, html{
 .btn-access:hover {
     color: #ffffff;
     border-color: #ffffff;
-    background-color: #276678;
+    background-color: #E8A8B6;
 }
 
 
 .btn-logout {
-    color: #276678;
+    color: black;
     font-weight: 400;
-    border-color: #276678;
+    border-color: #E8A8B6;
     background-color: #fff;
     align-self: center;
     padding: 0.25rem 0.5rem;
 }
 
 .btn-logout:hover {
-    color: #ffffff;
+    color: black;
     border-color: #ffffff;
-    background-color: #276678;
+    background-color: #E8A8B6;
 }
 
 .profile-status{
@@ -148,7 +148,7 @@ body, html{
 
 .profile-status > a {
     text-decoration: none;
-    color: #d3e0ea;
+    color: black;
 }
 
 .profile-status, .btn-logout {
@@ -159,7 +159,7 @@ body, html{
 
 .denied {
     text-decoration: none;
-    color:#276678;
+    color:#E8A8B6;
 }
 
 /* ERROR */
@@ -180,7 +180,7 @@ body, html{
 
 .not-register > a {
     text-decoration: none;
-    color: #276678;
+    color: #E8A8B6;
     margin-bottom: 3rem;
 }
 
@@ -214,7 +214,7 @@ body, html{
 
 #privacity {
     text-decoration: none;
-    color: #276678;
+    color: #E8A8B6;
     margin-left: 1rem;
 }
 
@@ -222,12 +222,12 @@ body, html{
 
 .show-more {
     text-decoration: none;
-    color: #276678;
+    color: #E8A8B6;
 }
 
 #show-more-profile {
     text-decoration: none;
-    color: #276678;
+    color: #E8A8B6;
 }
 
 .modal-company {
@@ -251,7 +251,8 @@ body, html{
 
 .company-img {
     width: 100%;
-    height: auto;
+    height: 300px;
+    object-fit: cover;
 }
 
 .profile-company > a {
@@ -264,7 +265,7 @@ body, html{
 }
 
 .profile-company > a:hover {
-    color: #276678;
+    color: #E8A8B6;
 }
 
 .btn-pay {
@@ -283,7 +284,7 @@ body, html{
 
 .profile-candidate{
     position: relative;
-    height: 23rem;
+    height: 15rem;
     background-image: url("https://images.unsplash.com/photo-1553949333-0510da388b82?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
     background-repeat: no-repeat;
     background-size: cover;
@@ -308,7 +309,7 @@ body, html{
 }
 
 .profile-candidate > a:hover{
-    color: #276678;
+    color: #E8A8B6;
 }
 
 .offers-candidate {
@@ -331,7 +332,7 @@ body, html{
 .border-left-title {
     border-left: 1px solid var(--border-color);
     padding: 20px;
-    color: #276678;
+    color: #E8A8B6;
 }
 
 .join {
@@ -367,7 +368,7 @@ body, html{
 
 .video {
     width: 100%;
-    background-color: #276678;
+    background-color: #E8A8B6;
     color:#fff;
     text-align: center;
     padding: 2rem 0;
@@ -481,7 +482,7 @@ header {
     background-position: en;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 35rem;
+    height: 25rem;
     z-index: 1;
 }
 
@@ -514,7 +515,7 @@ input[type="text"]:active {
     text-align: center;
     align-items: center;
     padding: 20px 0 40px 0;
-    background-color: #276678;
+    background-color: #E8A8B6;
     color: #fff;
 }
 
@@ -564,7 +565,7 @@ input[type="text"]:active {
 /* --- FOOTER --- */
 
 footer {
-    background-color: #276678;
+    background-color: #E8A8B6;
     text-transform: capitalize;
     color: #fff;
     font-size: .8em;

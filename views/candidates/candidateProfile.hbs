@@ -2,14 +2,20 @@
     <img class="img-fluid profile-img" src="{{currentCandidate.picture}}" alt="Profile Picture">
 
     <a type="button" class="btn btn-Candidates" data-toggle="modal" data-target="#showMoreModal">My Profile</a>
-
 </div>
-
+<div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" style="text-decoration: none;">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+    </nav>
+    {{!-- <a href="/">HOME</a> --}}
+</div>
 <h1 class="candidate-name text-uppercase">{{currentCandidate.name}} {{currentCandidate.surname}}</h1>
 
 <div class="container-xl container-lg container-md container-fluid">
-        <h2>My Offers</h2>
-
+        <h2>Applied Offers</h2>
         {{#each application}}
         <div class="border rounded p-3 mb-2 offers-candidate">
             <h3>{{offer.name}}</h3>
@@ -70,8 +76,7 @@
                             <a href="{{currentCandidate.cv}}">Download Resume</a>
                             {{/if}}
                         </div>
-                        <a class="btn btn-access d-inline" href="/candidate-edit/{{currentCandidate.id}}">Edit my
-                            profile</a>
+                        <a class="btn btn-access d-inline" href="/candidate-edit/{{currentCandidate.id}}">Edit Profile</a>
                     </div>
                 </div>
             </div>

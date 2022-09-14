@@ -54,15 +54,15 @@
                     <label for="address-input"> Address: </label>
                     <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}"
                         value="{{address.streetName}}" type="text" name="address.streetName" id="address-input"
-                        placeholder="Calle">
+                        placeholder="City">
                     <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}" value="{{address.number}}"
-                        type="text" name="address.number" id="address-input" placeholder="Número">
+                        type="text" name="address.number" id="address-input" placeholder="Street">
                     <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}" value="{{address.zipCode}}"
-                        type="text" name="address.zipCode" id="address-input" placeholder="Código Postal">
+                        type="text" name="address.zipCode" id="address-input" placeholder="Postal Code">
                     <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}" value="{{address.city}}"
                         type="text" name="address.city" id="address-input" placeholder="Address">
                     <input class="form-control mb-2 {{#if errors.address}}is-invalid{{/if}}" value="{{address.country}}"
-                        type="text" name="address.country" id="address-input" placeholder="País">
+                        type="text" name="address.country" id="address-input" placeholder="Country">
                     {{#if errors.address}}
                     <div class="invalid-feedback">{{errors.address}}</div>
                     {{/if}}

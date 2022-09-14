@@ -47,12 +47,6 @@ const Companieschema = new mongoose.Schema(
     },
     website: {
       type: String,
-      // validate: {
-      //     validator: (text) => {
-      //         return text.indexOf("https://" || "http://") === 0;
-      //     },
-      //     message: "Por favor, introduce una URL válida",
-      // },
     },
     social: {
       google: String,

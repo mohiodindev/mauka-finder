@@ -94,7 +94,7 @@ module.exports.sendDeleteCandidateEmail = (email, token) => {
   transporter.sendMail({
     from: `Mauka-Finder <${process.env.NM_USER}>`,
     to: email,
-    subject: "Confirm your withdrawal from HireHack",
+    subject: "Confirm your withdrawal from Mauka-Finder",
     html: generateDeleteCandidateTemplate(token),
   });
 };

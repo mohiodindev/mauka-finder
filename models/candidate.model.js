@@ -27,11 +27,6 @@ const Candidateschema = new mongoose.Schema(
     },
     address: {
       type: String,
-      // streetName: String,
-      // number: Number,
-      // zipCode: Number,
-      // city: String,
-      // country: String
     },
     email: {
       type: String,

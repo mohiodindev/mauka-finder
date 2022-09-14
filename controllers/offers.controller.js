@@ -61,10 +61,7 @@ module.exports.doCreate = (req, res, next) => {
   };
 
   const offer = req.body;
-  //console.log('oferta', req.body)
   offer.offers_publishedByCompany = req.currentCompany.id;
-  //{offer, ...offer.offers_publishedByCompany}
-
   if (offer.skills) {
     offer.skills = offer.skills.split(",");
   }
@@ -143,7 +140,6 @@ module.exports.webhook = (req, res, next) => {
   }
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
-    // Fulfill the purchase...
     Offer.findByIdAndUpdate(
       session.metadata.offer,
       {
@@ -173,13 +169,10 @@ module.exports.webhook = (req, res, next) => {
 };
 
 module.exports.edit = (req, res, next) => {
-  //Offer.find({'offers_publishedByCompany': req.currentCompany.id})
   Offer.findById(req.params.id)
     .then((offerToEdit) => {
-      //console.log("I'm here")
       console.log(offerToEdit);
       if (offerToEdit.offers_publishedByCompany == req.currentCompany.id) {
-        // res.render('offers/offerCreation', offerToEdit);
         console.log("if", offerToEdit);
         res.render("offers/offerCreation", {
           ...offerToEdit.toJSON(),
@@ -254,7 +247,7 @@ module.exports.search = (req, res, next) => {
     .sort("-createdAt")
     .populate("offers_publishedByCompany")
     .then((offers) => {
-      res.render("offers/offersList", {
+      return res.render("offers/offersList", {
         offers,
         query: req.query,
       });
@@ -263,23 +256,17 @@ module.exports.search = (req, res, next) => {
 
   // Test active + paid
   if (req.query.address) {
-    console.log("req.query", req.query);
     Offer.find({ $and: [{ active: true }, { paid: true }] })
       .populate("offers_publishedByCompany")
       .then((offers) => {
-        console.log("offers", offers);
         const queryAddress = req.query.address.toLowerCase().slice(1);
-        console.log("req.query.search", queryAddress);
         let filteredOffers = [];
         offers.forEach((offer) => {
-          console.log("offer forEach", offer);
           const cityOffer = offer.address;
           if (cityOffer.includes(queryAddress)) {
-            console.log("offerWithQueries", offer);
             filteredOffers.push(offer);
           }
         });
-        console.log("filteredOffers", filteredOffers);
         return filteredOffers;
       })
       .then((offers) =>
@@ -297,8 +284,6 @@ module.exports.search = (req, res, next) => {
     })
       .populate("offers_publishedByCompany")
       .then((offers) => {
-        //console.log ('req.query.category', req.query.category)
-        //console.log('offers', offers)
         res.render("offers/offersList", {
           offers,
         });
@@ -313,7 +298,6 @@ module.exports.search = (req, res, next) => {
     })
       .populate("offers_publishedByCompany")
       .then((offers) => {
-        console.log("offers", offers);
         res.render("offers/offersList", {
           offers,
         });
@@ -324,7 +308,6 @@ module.exports.search = (req, res, next) => {
     })
       .populate("offers_publishedByCompany")
       .then((offers) => {
-        console.log("offers", offers);
         res.render("offers/offersList", {
           offers,
         });
@@ -350,8 +333,7 @@ module.exports.search = (req, res, next) => {
     })
       .populate("offers_publishedByCompany")
       .then((offers) => {
-        console.log("offers", offers);
-        res.render("offers/offersList", {
+        return res.render("offers/offersList", {
           offers,
         });
       });

@@ -1,5 +1,11 @@
 <div class="profile-company">
     <img class="company-img" src="{{currentCompany.picture}}" alt="Profile Picture">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" style="text-decoration: none;">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+    </nav>
     <a type="button" class="btn btn-Candidates" data-toggle="modal" data-target="#showMoreModal">View Company Profile</a>
     <h1 class="text-uppercase my-5">{{currentCompany.name}}</h1>
 </div>
@@ -8,9 +14,9 @@
 
 <div class="container-xl container-lg container-md container-fluid login my-5">
 <div>
+    <a type="button" class="btn btn-offers" href="/offer-creation">Create Offer</a>
     <h2>Published Offers</h2>
     {{!-- Create Offer --}}
-    <a type="button" class="btn btn-offers" href="/offer-creation">Create Offer</a>
     
     {{!-- Mostrar oferta --}}
     {{#each offers}}

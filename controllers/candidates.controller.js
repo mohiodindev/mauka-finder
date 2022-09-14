@@ -88,25 +88,6 @@ module.exports.doLoginGoogle = (req, res, next) => {
   )(req, res, next);
 };
 
-// module.exports.doLoginLinkedin = (req, res, next) => {
-//     passport.authenticate('linkedin-auth-Candidates', (error, candidate, validations) => {
-//         if (error) {
-//             next(error)
-//         } else if (!candidate) {
-//             res.status(400).render('Candidates/login', {candidate: req.body, errors: validations.error})
-//         } else {
-//             req.login(candidate, (loginErr) => {
-//                 if (!loginErr) {
-//                     res.redirect('/candidate-profile')
-
-//                 } else {
-//                     next(loginErr)
-//                 }
-//             })
-//         }
-//     })(req, res, next)
-// }
-
 module.exports.signup = (req, res, next) => res.render("Candidates/signup");
 
 module.exports.doSignup = (req, res, next) => {
@@ -116,7 +97,6 @@ module.exports.doSignup = (req, res, next) => {
       candidate: req.body,
     });
   }
-  console.log("createdUser req.body: ", req.body);
   Candidate.findOne({
     email: req.body.email,
   })
@@ -163,7 +143,6 @@ module.exports.activate = (req, res, next) => {
   )
     .then((candidate) => {
       if (candidate) {
-        //candidate.generateToken();
         req.flash(
           "flashMessage",
           "Your account has been activated - You can now Login!"
@@ -216,7 +195,6 @@ module.exports.doEdit = (req, res, next) => {
 module.exports.updateEmail = (req, res, next) => {
   Candidate.findById({ _id: req.currentCandidate.id })
     .then((candidateToUpdate) => {
-      //console.log('candidateToDelete', candidateToDelete)
       req.flash(
         "flashMessage",
         "Email update request successful - Please go to your email to confirm the change"
@@ -351,7 +329,6 @@ module.exports.doEditPassword = (req, res, next) => {
                 .catch((err) => next(err));
             }
           } else {
-            console.log("¡Error, por favor intentalo de nuevo!");
             renderWithErrors({
               password: "That password has already been used",
             });
@@ -408,14 +385,3 @@ module.exports.doDelete = (req, res, next) => {
     })
     .catch((e) => next(e));
 };
-
-// module.exports.doDelete = (req, res, next) => {
-//     Candidate.findOneAndRemove({
-//             token: req.params.token
-//         })
-//         .then(() => {
-//             req.flash('flashMessage', 'Tu cuenta ha sido borrada correctamente');
-//             res.redirect('/');
-//         })
-//         .catch((err) => next(err));
-// }

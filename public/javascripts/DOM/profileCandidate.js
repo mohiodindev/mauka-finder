@@ -10,7 +10,7 @@ showMoreBtns1.forEach((showMoreBtn) =>
     description1.classList.toggle("d-none");
 
     if (description1.className != "d-none") {
-      showMoreBtn.innerHTML = "See More";
+      showMoreBtn.innerHTML = "See Less";
     } else {
       showMoreBtn.innerHTML = "See More";
     }
