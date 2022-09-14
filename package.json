@@ -30,8 +30,9 @@
     "passport-linkedin-oauth2": "^2.0.0",
     "passport-local": "^1.0.0",
     "stripe": "^8.137.0",
-    "uuid": "^8.3.2",
-    "nodemon":"2.0.19"
+    "nodemon":"2.0.19",
+    "uuid": "^8.3.2"
+    
   },
   "scripts": {
     "start": "nodemon",
