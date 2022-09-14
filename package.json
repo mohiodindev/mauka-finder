@@ -27,27 +27,23 @@
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth2": "^0.2.0",
-    "passport-linkedin-oauth2": "^2.0.0",
     "passport-local": "^1.0.0",
     "stripe": "^8.137.0",
-    "nodemon":"2.0.19",
     "uuid": "^8.3.2"
     
   },
+   "devDependencies":{
+       "nodemon":"2.0.19",
+   } ,
   "scripts": {
     "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon -e hbs, css, js app.js",
     "seeds": "node bin/seeds.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Mauka-Finder/Project2_Mauka-Finder.git"
-  },
+ 
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bin": {
-    "Project2_Mauka-Finder": "seeds.js"
-  }
+  "license": "ISC"
+
 }
